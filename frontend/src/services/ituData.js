@@ -1,0 +1,197 @@
+// Official Information Technology University (ITU) data sourced from itu.edu.pk
+
+// Official ITU Leadership and Faculty from itu.edu.pk
+export const ITU_FACULTY = [
+  {
+    id: 1,
+    name: "Prof. Dr. Adnan Noor Mian",
+    role: "Vice Chancellor & Tenured Professor",
+    dept: "Department of Computer Science",
+    education: "Ph.D. Computer Science, Sapienza University of Rome, Italy",
+    research: "Distributed Systems, Network Optimization, UNESCO Chair on ICTD",
+    avatar: "https://itu.edu.pk/wp-content/uploads/2014/04/Adnan-Noor-Mian-1-scaled.jpg",
+    email: "adnan.noor@itu.edu.pk",
+  },
+  {
+    id: 2,
+    name: "Dr. Arif Mahmood",
+    role: "Tenured Professor & Dean, Faculty of Sciences",
+    dept: "Faculty of Sciences",
+    education: "Ph.D. Computer Science, LUMS",
+    research: "Artificial Intelligence, Robot Vision, Pattern Recognition (CAI&RV)",
+    avatar: "https://itu.edu.pk/wp-content/uploads/2014/04/Dr-ARif-Mehmood.jpg",
+    email: "arif.mahmood@itu.edu.pk",
+  },
+  {
+    id: 3,
+    name: "Dr. Ali Ahmed",
+    role: "Tenured Professor & Chairperson",
+    dept: "Department of Computer Science",
+    education: "Ph.D. Electrical & Computer Eng, Georgia Tech, USA",
+    research: "Signal Processing, Machine Learning, Compressed Sensing",
+    avatar: "https://itu.edu.pk/wp-content/uploads/2014/04/dr-ali.jpg",
+    email: "ali.ahmed@itu.edu.pk",
+  },
+  {
+    id: 4,
+    name: "Dr. Tauseef Tauqeer",
+    role: "Associate Professor & Chairperson",
+    dept: "Department of Electrical Engineering",
+    education: "Ph.D. Microelectronics, University of Manchester, UK",
+    research: "Semiconductor Physics, VLSI Architecture, Sensor Systems",
+    avatar: "https://itu.edu.pk/wp-content/uploads/2014/04/DR.-TAUSEEF-TAUQEER.jpg",
+    email: "tauseef.tauqeer@itu.edu.pk",
+  },
+  {
+    id: 5,
+    name: "Dr. Syed Ibrahim Ghaznavi",
+    role: "Assistant Professor",
+    dept: "Department of Computer Science",
+    education: "Ph.D. Computer Science, University of Edinburgh, UK",
+    research: "Internet Measurements, Mobile Systems, Network Security",
+    avatar: "https://itu.edu.pk/wp-content/uploads/2014/04/DR.-SYED-IBRAHIM-GHAZNAVI.jpg",
+    email: "ibrahim.ghaznavi@itu.edu.pk",
+  },
+  {
+    id: 6,
+    name: "Dr. Waqas Sultani",
+    role: "Associate Professor",
+    dept: "Department of Computer Science",
+    education: "Ph.D. Computer Vision, University of Central Florida, USA",
+    research: "Anomaly Detection, Video Surveillance, Deep Learning",
+    avatar: "https://itu.edu.pk/wp-content/uploads/2023/04/Dr-waqas-sultani.jpg",
+    email: "waqas.sultani@itu.edu.pk",
+  },
+];
+
+// Burki Road campus rendering and lab photos, saved locally from itu.edu.pk
+export const BURKI_CAMPUS_DETAILS = [
+  {
+    title: "ITU Purpose-Built Campus on Burki Road, Lahore",
+    location: "Main Burki Road, Lahore, Pakistan",
+    area: "183+ Kanals of State-of-the-Art Academic Infrastructure",
+    description:
+      "Information Technology University’s purpose-built campus on Burki Road features modern tiered lecture theaters, cutting-edge AI & robotics labs, comprehensive research centers, sports complex, and a state-of-the-art tech library.",
+    heroBanner: "/images/campus-hero.jpg",
+    facilities: [
+      {
+        name: "Programming Lab",
+        tag: "Computing",
+        img: "/images/lab-programming.jpg",
+        desc: "Workstation lab used for programming courses and practical sessions.",
+      },
+      {
+        name: "High Performance Computing Lab",
+        tag: "Research",
+        img: "/images/lab-hpc.jpg",
+        desc: "Dedicated space for high performance computing work.",
+      },
+      {
+        name: "Embedded Computing Lab",
+        tag: "Hardware & IoT",
+        img: "/images/lab-embedded.jpg",
+        desc: "Hands-on benches for embedded systems development.",
+      },
+      {
+        name: "Electric Machines Lab",
+        tag: "Engineering",
+        img: "/images/lab-machines.jpg",
+        desc: "Practical training on electrical machines and test panels.",
+      },
+    ],
+  },
+];
+
+// Degree Programs & Fees Structure
+export const ITU_PROGRAMS = [
+  {
+    id: "bs-cs",
+    code: "CS-BS",
+    name: "BS Computer Science",
+    department: "Department of Computer Science",
+    degreeLevel: "Undergraduate (4 Years)",
+    creditHours: 130,
+    tuitionPerSemester: 185000,
+    admissionFee: 35000,
+    securityDeposit: 20000,
+    description:
+      "Accredited flagship program focusing on algorithms, intelligent systems, software architecture, and distributed cloud computing at the Burki Road campus.",
+    careers: ["Software Engineer", "AI Developer", "Cloud Architect", "Systems Analyst"],
+    highlights: ["ACM Chapter", "High-Tech AI Labs", "Top Industry Linkages"],
+  },
+  {
+    id: "bs-ai",
+    code: "AI-BS",
+    name: "BS Artificial Intelligence",
+    department: "Department of Artificial Intelligence",
+    degreeLevel: "Undergraduate (4 Years)",
+    creditHours: 132,
+    tuitionPerSemester: 195000,
+    admissionFee: 35000,
+    securityDeposit: 20000,
+    description:
+      "Focused curriculum exploring machine learning, computer vision, deep reinforcement learning, and autonomous robotics.",
+    careers: ["AI Engineer", "ML Researcher", "Computer Vision Specialist", "NLP Engineer"],
+    highlights: ["Nvidia GPU Cluster", "Robotics Wing", "CAI&RV Research Lab"],
+  },
+  {
+    id: "bs-se",
+    code: "SE-BS",
+    name: "BS Software Engineering",
+    department: "Department of Computer & Software Engineering",
+    degreeLevel: "Undergraduate (4 Years)",
+    creditHours: 130,
+    tuitionPerSemester: 185000,
+    admissionFee: 35000,
+    securityDeposit: 20000,
+    description:
+      "Enterprise software development, full-stack microservices, DevOps workflows, quality assurance, and automated testing frameworks.",
+    careers: ["Full Stack Engineer", "DevOps Specialist", "Software Architect", "QA Lead"],
+    highlights: ["Industry Capstone Projects", "Agile & CI/CD Labs", "Cloud Certifications"],
+  },
+  {
+    id: "bs-ee",
+    code: "EE-BS",
+    name: "BS Electrical Engineering",
+    department: "Department of Electrical Engineering",
+    degreeLevel: "Undergraduate (4 Years)",
+    creditHours: 134,
+    tuitionPerSemester: 175000,
+    admissionFee: 35000,
+    securityDeposit: 20000,
+    description:
+      "PEC (Washington Accord Level II) accredited. Covers semiconductor systems, IoT, smart grid technologies, and signal processing.",
+    careers: ["Embedded Systems Designer", "IoT Engineer", "Control Systems Lead", "Hardware Architect"],
+    highlights: ["PEC Accredited", "Embedded Systems Lab", "Clean Energy Testbed"],
+  },
+  {
+    id: "bs-ds",
+    code: "DS-BS",
+    name: "BS Data Science",
+    department: "Department of Computer Science",
+    degreeLevel: "Undergraduate (4 Years)",
+    creditHours: 130,
+    tuitionPerSemester: 185000,
+    admissionFee: 35000,
+    securityDeposit: 20000,
+    description:
+      "Applied statistical modeling, big data distributed analytics, machine learning pipelines, and predictive business intelligence.",
+    careers: ["Data Scientist", "Big Data Engineer", "BI Consultant", "Quantitative Analyst"],
+    highlights: ["Spark & Hadoop Labs", "Predictive Analytics Center", "Real-world Datasets"],
+  },
+  {
+    id: "ms-cs",
+    code: "CS-MS",
+    name: "MS Computer Science",
+    department: "Department of Computer Science",
+    degreeLevel: "Graduate (2 Years)",
+    creditHours: 30,
+    tuitionPerSemester: 135000,
+    admissionFee: 35000,
+    securityDeposit: 20000,
+    description:
+      "Advanced research degree offering specializations in AI, Cybersecurity, Distributed Networks, and Computer Vision.",
+    careers: ["Lead Researcher", "Principal Architect", "Ph.D. Scholar"],
+    highlights: ["HEC Approved", "Funded Research Assistantships", "International Journal Track"],
+  },
+];

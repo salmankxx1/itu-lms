@@ -1,0 +1,66 @@
+# Render Blueprint: deploys the API and the website from this repository.
+# The database (Neon) and email provider (Brevo) are external. See DEPLOYMENT.md.
+
+services:
+  - type: web
+    name: itu-lms-api
+    runtime: python
+    plan: free
+    region: singapore
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    # Free instances have no pre-deploy step, so migrations run at startup.
+    # Both commands are safe to repeat on every start.
+    startCommand: alembic upgrade head && python seed_admin.py && uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.7
+      - key: ENVIRONMENT
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: BREVO_API_KEY
+        sync: false
+      - key: SENDER_EMAIL
+        sync: false
+      - key: SENDER_NAME
+        value: ITU Lahore Portal
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: FRONTEND_ORIGINS
+        value: https://itu-lms-web.onrender.com
+      - key: FRONTEND_URL
+        value: https://itu-lms-web.onrender.com/login
+
+  - type: web
+    name: itu-lms-web
+    runtime: static
+    rootDir: frontend
+    branch: main
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    # Every page is served by index.html, so links and refreshes keep working
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+    envVars:
+      - key: NODE_VERSION
+        value: 22.18.0
+      - key: VITE_API_URL
+        value: https://itu-lms-api.onrender.com
