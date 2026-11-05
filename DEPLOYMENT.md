@@ -8,7 +8,7 @@ The project runs on three hosted services:
 | Database | [Neon](https://neon.tech) | Hosted PostgreSQL. Render's free database is deleted after 30 days |
 | Email | [Brevo](https://www.brevo.com) | Sends over HTTPS. Render's free plan blocks the SMTP ports Gmail uses |
 
-All three have free plans, and none of the steps below ask for payment details.
+All three have free plans. Choose the free option if a service offers an upgrade.
 
 ## 1. Put the code on GitHub
 
