@@ -99,17 +99,22 @@ function MarkAttendance({ courseId, day }) {
             sx={{
               p: 1.5,
               display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
               justifyContent: "space-between",
-              alignItems: "center",
+              alignItems: { xs: "stretch", sm: "center" },
               gap: 1,
-              flexWrap: "wrap",
             }}
           >
             <Typography variant="body2" sx={{ fontWeight: 700 }}>{row.student_name}</Typography>
 
+            {/* Full width on a phone so every row lines up the same way */}
             <ToggleButtonGroup
               exclusive
               size="small"
+              sx={{
+                width: { xs: "100%", sm: "auto" },
+                "& .MuiToggleButton-root": { flex: { xs: 1, sm: "none" } },
+              }}
               value={statusOf(row)}
               onChange={(_, status) => {
                 if (status) setChanges({ ...changes, [row.student_id]: status });

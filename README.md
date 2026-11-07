@@ -81,6 +81,8 @@ The tests use an in-memory SQLite database and never touch PostgreSQL or send em
 
 ## Project layout
 
+Diagrams of the architecture, data flow, features, modules and database are in [ARCHITECTURE.md](ARCHITECTURE.md).
+
 ```
 main.py              Auth, dashboard, and student, teacher and course management
 lms_routes.py        Course space: enrollment, content, assignments, attendance, grades

@@ -8,7 +8,7 @@ function DashboardCard({ title, value, icon }) {
       elevation={8}
       sx={{
         p: 4,
-        borderRadius: 4,
+        borderRadius: "16px",
         transition: "0.3s",
         cursor: "pointer",
         "&:hover": {

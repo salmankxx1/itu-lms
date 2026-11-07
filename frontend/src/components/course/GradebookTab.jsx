@@ -15,6 +15,17 @@ import DownloadIcon from "@mui/icons-material/Download";
 import { downloadCsv, formatPercent } from "../../services/format";
 import { useApi } from "../../services/useApi";
 
+// Keeps the student's name in view while the score columns scroll sideways
+const stickyName = {
+  position: "sticky",
+  left: 0,
+  zIndex: 1,
+  whiteSpace: "nowrap",
+  bgcolor: (theme) => (theme.palette.mode === "light" ? "#ffffff" : "#111827"),
+  borderRight: 1,
+  borderRightColor: "divider",
+};
+
 function GradebookTab({ courseId, course }) {
   const { data, error } = useApi(`/courses/${courseId}/gradebook`);
 
@@ -49,26 +60,30 @@ function GradebookTab({ courseId, course }) {
         Export CSV
       </Button>
 
-      <Paper variant="outlined">
+      <Typography variant="caption" color="text.secondary" sx={{ display: { xs: "block", sm: "none" }, mb: 1 }}>
+        Swipe the table sideways to see every column.
+      </Typography>
+
+      <Paper variant="outlined" sx={{ overflow: "hidden" }}>
         <TableContainer>
           <Table size="small">
             <TableHead>
               <TableRow>
-                <TableCell>Student</TableCell>
+                <TableCell sx={stickyName}>Student</TableCell>
                 {data.assignments.map((assignment) => (
                   <TableCell key={assignment.id} align="right" sx={{ whiteSpace: "nowrap" }}>
                     {assignment.title} (/{assignment.max_points})
                   </TableCell>
                 ))}
-                <TableCell align="right">Total</TableCell>
-                <TableCell align="right">Grade</TableCell>
-                <TableCell align="right">Attendance</TableCell>
+                <TableCell align="right" sx={{ whiteSpace: "nowrap" }}>Total</TableCell>
+                <TableCell align="right" sx={{ whiteSpace: "nowrap" }}>Grade</TableCell>
+                <TableCell align="right" sx={{ whiteSpace: "nowrap" }}>Attendance</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {data.rows.map((row) => (
                 <TableRow key={row.student_id}>
-                  <TableCell sx={{ whiteSpace: "nowrap" }}>{row.student_name}</TableCell>
+                  <TableCell sx={stickyName}>{row.student_name}</TableCell>
                   {row.cells.map((cell) => (
                     <TableCell key={cell.assignment_id} align="right">
                       {cell.score ?? "—"}

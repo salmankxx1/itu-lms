@@ -38,7 +38,7 @@ function CourseDetail() {
         All courses
       </Button>
 
-      <Paper elevation={3} sx={{ p: { xs: 2, sm: 3 }, mb: 2, borderRadius: 4 }}>
+      <Paper elevation={3} sx={{ p: { xs: 2, sm: 3 }, mb: 2, borderRadius: "16px" }}>
         <Typography variant="overline" color="primary">
           {course.code} • {course.credit_hours} credit hours
         </Typography>

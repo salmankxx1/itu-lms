@@ -7,7 +7,7 @@ function PageHeader({ title, subtitle, action }) {
       sx={{
         p: { xs: 2, sm: 3 },
         mb: 3,
-        borderRadius: 4,
+        borderRadius: "16px",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
