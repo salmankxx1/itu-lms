@@ -277,3 +277,18 @@ def test_repeated_failed_logins_are_locked_out(api):
     good = {"email": "admin@test.com", "password": "admin-password"}
     assert api.client.post("/login", json=good).status_code == 429
     assert api.client.post("/login", json={"email": "other@test.com", "password": "x"}).status_code == 401
+
+
+def test_oversized_text_is_refused(api):
+    too_long = {"name": "N" * 201, "email": "long@test.com", "age": 20, "gender": "Male"}
+    assert api.client.post("/students", headers=api.admin, json=too_long).status_code == 422
+
+    huge_login = {"email": "a@test.com", "password": "x" * 1000}
+    assert api.client.post("/login", json=huge_login).status_code == 422
+
+    course = api.course()
+    assert api.client.post(
+        "/announcements",
+        headers=api.admin,
+        json={"title": "t", "body": "b" * 10001, "course_id": course["id"]},
+    ).status_code == 422

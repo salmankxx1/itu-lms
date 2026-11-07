@@ -3,6 +3,7 @@ import { Box, Container } from "@mui/material";
 
 import Navbar from "./Navbar";
 import CustomCursor from "./CustomCursor";
+import LocalCopyBanner from "./LocalCopyBanner";
 
 function Layout({ mode, setMode }) {
   return (
@@ -18,6 +19,7 @@ function Layout({ mode, setMode }) {
       }}
     >
       <CustomCursor />
+      <LocalCopyBanner />
       <Navbar mode={mode} setMode={setMode} />
 
       <Box

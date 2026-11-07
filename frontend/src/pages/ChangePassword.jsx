@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Alert, Box, Button, Paper, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, Paper, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import api, { getApiError } from "../services/api";
+import PasswordField from "../components/PasswordField";
 
 function ChangePassword() {
 
@@ -72,20 +73,18 @@ function ChangePassword() {
 
                 {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
 
-                <TextField
+                <PasswordField
                     fullWidth
                     required
-                    type="password"
                     label="Current Password"
                     sx={{ mb: 2 }}
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
                 />
 
-                <TextField
+                <PasswordField
                     fullWidth
                     required
-                    type="password"
                     label="New Password"
                     helperText="At least 8 characters"
                     sx={{ mb: 2 }}
@@ -93,10 +92,9 @@ function ChangePassword() {
                     onChange={(e) => setNewPassword(e.target.value)}
                 />
 
-                <TextField
+                <PasswordField
                     fullWidth
                     required
-                    type="password"
                     label="Confirm Password"
                     sx={{ mb: 3 }}
                     value={confirmPassword}

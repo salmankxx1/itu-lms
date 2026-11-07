@@ -3,6 +3,8 @@ import { Paper, TextField, Button, Typography, Box, Alert } from "@mui/material"
 import { useNavigate, Link } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import api, { getApiError } from "../services/api";
+import LocalCopyBanner from "../components/LocalCopyBanner";
+import PasswordField from "../components/PasswordField";
 
 function Login() {
   const navigate = useNavigate();
@@ -51,6 +53,8 @@ function Login() {
         backgroundImage: "radial-gradient(circle at 50% 30%, rgba(2, 132, 199, 0.15) 0%, transparent 70%)",
       }}
     >
+      <LocalCopyBanner sx={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 10 }} />
+
       <Paper
         component="form"
         onSubmit={handleLogin}
@@ -120,10 +124,10 @@ function Login() {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <TextField
+        <PasswordField
           fullWidth
           label="Password"
-          type="password"
+          iconColor="#94a3b8"
           required
           autoComplete="current-password"
           variant="outlined"

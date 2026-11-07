@@ -12,7 +12,11 @@ from pydantic import (
     field_validator,
 )
 
-NonEmptyStr = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1)]
+NonEmptyStr = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=200)]
+
+# Upper limits stop anyone filling the database with huge text
+LongText = Annotated[str, StringConstraints(max_length=10000)]
+SubmissionText = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=20000)]
 
 
 def blank_to_none(value):
@@ -98,7 +102,7 @@ class CourseBase(BaseModel):
     name: NonEmptyStr
     code: NonEmptyStr
     credit_hours: int = Field(ge=1, le=12)
-    description: str | None = None
+    description: LongText | None = None
     teacher_id: OptionalId = None
 
 
@@ -131,8 +135,8 @@ class CourseDetail(CourseResponse):
 # -------------------- User --------------------
 
 class UserLogin(BaseModel):
-    email: str
-    password: str
+    email: str = Field(max_length=254)
+    password: str = Field(max_length=256)
 
 
 class TemporaryLogin(BaseModel):
@@ -142,7 +146,7 @@ class TemporaryLogin(BaseModel):
 
 
 class ChangePassword(BaseModel):
-    current_password: str
+    current_password: str = Field(max_length=256)
     new_password: str = Field(min_length=8, max_length=72)
 
 
@@ -223,7 +227,7 @@ class EnrolledStudent(BaseModel):
 
 class CreateAnnouncement(BaseModel):
     title: NonEmptyStr
-    body: NonEmptyStr
+    body: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=10000)]
     course_id: OptionalId = None
 
 
@@ -243,7 +247,7 @@ class AnnouncementResponse(BaseModel):
 class CreateMaterial(BaseModel):
     title: NonEmptyStr
     url: AnyHttpUrl
-    description: str | None = None
+    description: LongText | None = None
 
 
 class MaterialResponse(BaseModel):
@@ -260,18 +264,18 @@ class MaterialResponse(BaseModel):
 
 class AssignmentInput(BaseModel):
     title: NonEmptyStr
-    description: str | None = None
+    description: LongText | None = None
     due_date: datetime
     max_points: int = Field(ge=1, le=1000)
 
 
 class SubmitAssignment(BaseModel):
-    content: NonEmptyStr
+    content: SubmissionText
 
 
 class GradeSubmission(BaseModel):
     score: int = Field(ge=0)
-    feedback: str | None = None
+    feedback: LongText | None = None
 
 
 class SubmissionResponse(BaseModel):
