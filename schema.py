@@ -202,6 +202,7 @@ class DashboardResponse(BaseModel):
     teachers: int
     courses: int
     enrollments: int
+    pendingRequests: int
     studentsWithoutLogin: int
     teachersWithoutLogin: int
     gender: list[GenderChart]
@@ -221,6 +222,47 @@ class EnrolledStudent(BaseModel):
     id: int
     name: str
     email: str
+
+
+# -------------------- Enrollment requests --------------------
+
+RequestStatus = Literal["pending", "approved", "rejected"]
+
+
+class CreateEnrollmentRequest(BaseModel):
+    course_id: int
+
+
+class RejectEnrollmentRequest(BaseModel):
+    note: Annotated[str, StringConstraints(strip_whitespace=True, max_length=500)] | None = None
+
+
+class EnrollmentRequestResponse(BaseModel):
+    id: int
+    student_id: int
+    student_name: str
+    student_email: str
+    course_id: int
+    course_code: str
+    course_name: str
+    credit_hours: int
+    status: RequestStatus
+    note: str | None
+    created_at: datetime
+    decided_at: datetime | None
+
+
+class CatalogCourse(BaseModel):
+    id: int
+    code: str
+    name: str
+    credit_hours: int
+    description: str | None
+    teacher_name: str | None
+    enrolled_count: int
+    status: Literal["available", "pending", "rejected", "enrolled"]
+    request_id: int | None
+    note: str | None
 
 
 # -------------------- Announcements --------------------

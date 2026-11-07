@@ -19,6 +19,8 @@ const CoursesRouter = lazy(() => import("./pages/CoursesRouter"));
 const CourseDetail = lazy(() => import("./pages/CourseDetail"));
 const Announcements = lazy(() => import("./pages/Announcements"));
 const Grades = lazy(() => import("./pages/Grades"));
+const CourseCatalog = lazy(() => import("./pages/CourseCatalog"));
+const EnrollmentRequests = lazy(() => import("./pages/EnrollmentRequests"));
 
 const pageLoader = (
   <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "60vh" }}>
@@ -79,6 +81,22 @@ function App() {
                 element={
                   <ProtectedRoute roles={["admin"]}>
                     <Teachers />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/catalog"
+                element={
+                  <ProtectedRoute roles={["student"]}>
+                    <CourseCatalog />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/requests"
+                element={
+                  <ProtectedRoute roles={["admin"]}>
+                    <EnrollmentRequests />
                   </ProtectedRoute>
                 }
               />

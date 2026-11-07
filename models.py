@@ -76,6 +76,7 @@ class Student(AccountStatusMixin, Base):
     user = relationship("User", lazy="joined")
     teacher = relationship("Teacher", back_populates="students", foreign_keys=[teacher_id], lazy="joined")
     enrollments = relationship("Enrollment", back_populates="student", cascade="all, delete-orphan")
+    enrollment_requests = relationship("EnrollmentRequest", back_populates="student", cascade="all, delete-orphan")
     submissions = relationship("Submission", back_populates="student", cascade="all, delete-orphan")
     attendance = relationship("AttendanceRecord", back_populates="student", cascade="all, delete-orphan")
 
@@ -93,6 +94,7 @@ class Course(Base):
 
     teacher = relationship("Teacher", back_populates="courses")
     enrollments = relationship("Enrollment", back_populates="course", cascade="all, delete-orphan")
+    enrollment_requests = relationship("EnrollmentRequest", back_populates="course", cascade="all, delete-orphan")
     announcements = relationship("Announcement", back_populates="course", cascade="all, delete-orphan")
     materials = relationship("CourseMaterial", back_populates="course", cascade="all, delete-orphan")
     assignments = relationship("Assignment", back_populates="course", cascade="all, delete-orphan")
@@ -110,6 +112,26 @@ class Enrollment(Base):
 
     student = relationship("Student", back_populates="enrollments")
     course = relationship("Course", back_populates="enrollments")
+
+
+class EnrollmentRequest(Base):
+    """A student asks to join a course; an admin approves or rejects it."""
+
+    __tablename__ = "enrollment_requests"
+    __table_args__ = (UniqueConstraint("student_id", "course_id"),)
+
+    id = Column(Integer, primary_key=True)
+    student_id = Column(Integer, ForeignKey("students.id", ondelete="CASCADE"), nullable=False)
+    course_id = Column(Integer, ForeignKey("courses.id", ondelete="CASCADE"), nullable=False, index=True)
+    # pending, approved or rejected
+    status = Column(String, nullable=False, index=True)
+    note = Column(Text)
+    created_at = created_at_column()
+    decided_at = Column(TIMESTAMP(timezone=True))
+    decided_by_id = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"))
+
+    student = relationship("Student", back_populates="enrollment_requests")
+    course = relationship("Course", back_populates="enrollment_requests")
 
 
 class Announcement(Base):

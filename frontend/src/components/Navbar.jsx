@@ -22,6 +22,8 @@ import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
+import HowToRegOutlinedIcon from "@mui/icons-material/HowToRegOutlined";
+import LibraryAddOutlinedIcon from "@mui/icons-material/LibraryAddOutlined";
 import GradeOutlinedIcon from "@mui/icons-material/GradeOutlined";
 import LockResetOutlinedIcon from "@mui/icons-material/LockResetOutlined";
 
@@ -50,6 +52,7 @@ function Navbar({ mode, setMode }) {
       return [
         { label: "Learning Space", path: "/", icon: <DashboardOutlinedIcon fontSize="small" /> },
         { label: "My Courses", path: "/courses", icon: <MenuBookOutlinedIcon fontSize="small" /> },
+        { label: "Browse Courses", path: "/catalog", icon: <LibraryAddOutlinedIcon fontSize="small" /> },
         { label: "My Grades", path: "/grades", icon: <GradeOutlinedIcon fontSize="small" /> },
         { label: "Announcements", path: "/announcements", icon: <CampaignOutlinedIcon fontSize="small" /> },
       ];
@@ -68,6 +71,7 @@ function Navbar({ mode, setMode }) {
       { label: "Students", path: "/students", icon: <SchoolOutlinedIcon fontSize="small" /> },
       { label: "Faculty", path: "/teachers", icon: <PersonOutlinedIcon fontSize="small" /> },
       { label: "Courses", path: "/courses", icon: <MenuBookOutlinedIcon fontSize="small" /> },
+      { label: "Requests", path: "/requests", icon: <HowToRegOutlinedIcon fontSize="small" /> },
       { label: "Announcements", path: "/announcements", icon: <CampaignOutlinedIcon fontSize="small" /> },
     ];
   };

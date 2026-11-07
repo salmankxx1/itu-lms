@@ -1,4 +1,5 @@
-import { Alert, Box, CircularProgress, Grid, Paper, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { Alert, Box, Button, CircularProgress, Grid, Paper, Typography } from "@mui/material";
 
 import { AnnouncementList } from "../components/AnnouncementFeed";
 import CourseCards from "../components/CourseCards";
@@ -52,11 +53,16 @@ export default function StudentPortal() {
         </Grid>
       </Grid>
 
-      <Typography variant="h6" sx={{ mb: 1.5 }}>My Courses</Typography>
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 1, mb: 1.5, flexWrap: "wrap" }}>
+        <Typography variant="h6">My Courses</Typography>
+        <Button component={Link} to="/catalog" variant="outlined" size="small">
+          Browse courses
+        </Button>
+      </Box>
       <Box sx={{ mb: 3 }}>
         <CourseCards
           courses={data.courses}
-          emptyText="You are not enrolled in any courses yet. The administration will enroll you."
+          emptyText="You are not enrolled in any courses yet. Use Browse courses to request one."
         />
       </Box>
 

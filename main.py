@@ -12,6 +12,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.sql import extract
 
 import email_service
+import enrollment_routes
 import lms_routes
 import schema
 from auth.hashing import hash_password, verify_password
@@ -20,7 +21,7 @@ from auth.login_limiter import login_limiter
 from auth.oauth2 import get_authenticated_user
 from auth.role_checker import admin_only, all_users, teacher_admin
 from database import get_db
-from models import Course, Enrollment, Student, Teacher, User
+from models import Course, Enrollment, EnrollmentRequest, Student, Teacher, User
 
 load_dotenv()
 
@@ -76,6 +77,7 @@ app.add_middleware(
 )
 
 app.include_router(lms_routes.router)
+app.include_router(enrollment_routes.router)
 
 
 @app.exception_handler(IntegrityError)
@@ -370,6 +372,7 @@ def get_dashboard(
         "teachers": db.query(Teacher).count(),
         "courses": db.query(Course).count(),
         "enrollments": db.query(Enrollment).count(),
+        "pendingRequests": db.query(EnrollmentRequest).filter(EnrollmentRequest.status == "pending").count(),
         "studentsWithoutLogin": db.query(Student).filter(Student.user_id.is_(None)).count(),
         "teachersWithoutLogin": db.query(Teacher).filter(Teacher.user_id.is_(None)).count(),
         "gender": [{"name": g, "value": count} for g, count in gender_data],

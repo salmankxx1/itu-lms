@@ -101,6 +101,13 @@ function Dashboard() {
         </Button>
       </Box>
 
+      {dashboard.pendingRequests > 0 && (
+        <Alert severity="info" sx={{ mb: 2 }}>
+          {dashboard.pendingRequests} course {dashboard.pendingRequests === 1 ? "request is" : "requests are"} waiting
+          for approval. <Link to="/requests">Review requests</Link>
+        </Alert>
+      )}
+
       {missingLogins > 0 && (
         <Alert severity="warning" sx={{ mb: 3 }}>
           {dashboard.studentsWithoutLogin} students and {dashboard.teachersWithoutLogin} teachers

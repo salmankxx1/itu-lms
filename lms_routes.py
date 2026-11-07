@@ -455,6 +455,11 @@ def enroll_student(
         raise HTTPException(status_code=400, detail="Student is already enrolled.")
 
     db.add(Enrollment(course_id=course_id, student_id=student.id))
+
+    # Imported here because enrollment_routes depends on this module
+    from enrollment_routes import approve_pending_request
+    approve_pending_request(db, student.id, course_id, current_user)
+
     db.commit()
 
     return student

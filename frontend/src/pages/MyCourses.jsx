@@ -1,4 +1,5 @@
-import { Alert, Box, CircularProgress } from "@mui/material";
+import { Link } from "react-router-dom";
+import { Alert, Box, Button, CircularProgress } from "@mui/material";
 
 import CourseCards from "../components/CourseCards";
 import PageHeader from "../components/PageHeader";
@@ -11,7 +12,16 @@ function MyCourses() {
 
   return (
     <>
-      <PageHeader title="My Courses" />
+      <PageHeader
+        title="My Courses"
+        action={
+          localStorage.getItem("role") === "student" && (
+            <Button component={Link} to="/catalog" variant="contained">
+              Browse courses
+            </Button>
+          )
+        }
+      />
 
       {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
 
@@ -25,7 +35,7 @@ function MyCourses() {
           emptyText={
             isTeacher
               ? "No courses are assigned to you yet."
-              : "You are not enrolled in any courses yet. The administration will enroll you."
+              : "You are not enrolled in any courses yet. Use Browse Courses to request one."
           }
         />
       )}
